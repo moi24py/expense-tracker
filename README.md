@@ -1,3 +1,6 @@
-# Hello!
+# expense-tracker
 
-## I'm currently working on my second project. Nothing fancy, it's an expense tracker!
+Just like the name says, this program helps you track expenses.
+
+- Installation
+- Usage
