@@ -5,6 +5,7 @@ from datetime import date
 import calendar
 import regex as re
 from csv import DictReader, DictWriter, reader, writer
+from tabulate import tabulate
 
 import modules.class_expense as ce
 
@@ -323,7 +324,7 @@ def search_expenses(name:str=None, category:str=None) -> list[dict]:
             if len(exp_list) < 1:
                 return None
             return exp_list
-        
+
 
 def print_expenses(exp_list:list[dict]=None):
     """Prints the expenses if a list of expenses is passed in.
@@ -339,11 +340,13 @@ def print_expenses(exp_list:list[dict]=None):
         return None
     # Print the expenses and their total
     if exp_list:
+        table = []
         tot = 0
         for exp in exp_list:
             tot += float(exp['cost'])
-            print(f"{exp['name']} {exp['cost']}€ in {exp['category']}")
-        print(f"\nThe total amount is {round(tot,2)}€.\n")
+            table.append([exp['date'],exp['name'],exp['cost'],exp['category']])
+        print(tabulate(table, headers=['Date','Name','Cost','Category'], floatfmt=".2f"))
+        print(f"\nThe total is {round(tot,2)}€.\n")
         return None
 
 def select_to_delete(exp_list:list[dict]=None) -> dict:
