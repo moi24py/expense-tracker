@@ -31,7 +31,7 @@ def main():
             a.add_sub_money('sub')
             exit()
         if option == '0':
-            print("\nBye!")
+            print("Bye!\n")
             exit()
 
 if __name__ == '__main__':
