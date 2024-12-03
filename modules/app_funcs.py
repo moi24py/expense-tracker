@@ -11,7 +11,7 @@ import modules.class_expense as ce
 
 def intro():
     """Prints the welcome message."""
-    print("\n\U0001F4B0 Expense Tracker \U0001F4B0\n")
+    print("\n\U0001F4B0 expense-tracker \U0001F4B0")
 
 def view_or_insert():
     """Asks the user if they want to see the expenses list or add a new expense."""
@@ -24,13 +24,13 @@ Would you like to:
 A) add a new expense
 B) view all the expenses
 C) view expenses in a category
-D) search for an expense
-E) delete an expense
+D) search for an expense by name
+E) delete an expense by name
        
 [Balance]
 F) view balance
-G) add money
-H) subtract money
+G) add an amount
+H) subtract an amount
        - - -         
 0) Exit the program""")
 
@@ -102,7 +102,7 @@ def search_and_delete_expense():
 def view_balance():
     try:
         bal = get_balance()
-        if bal:
+        if type(bal) == float:
             print(f"Current balance: {bal}€")
             money_left_per_day()
             return None
@@ -319,12 +319,12 @@ def search_expenses(name:str=None, category:str=None) -> list[dict]:
         # all the expenses by name
         if name:
             for row in reader:
-                if name.lower() in row['name'].split():
+                if name.lower() in row['name']:
                     exp_list.append(row)
             if len(exp_list) < 1:
                 return None
             return exp_list
-
+        
 
 def print_expenses(exp_list:list[dict]=None):
     """Prints the expenses if a list of expenses is passed in.
@@ -550,7 +550,8 @@ def money_left_per_day():
         print("Cannot access the total amount of expenses of this month.")
         return None
     
-    message = f"\U0001F4B8 You have spent {expenses_t}€ until today. You have roughly {tot/remaining_days}€ left this month."
+    remaining_amount = round(tot/remaining_days,2)
+    message = f"\U0001F4B8 You have spent {expenses_t}€ until today. You have roughly {remaining_amount}€ left this month."
     print(message)
 
 if __name__ == "__main__":
@@ -562,5 +563,4 @@ if __name__ == "__main__":
     print_confirm
     days
     money_left_per_day
-
 
