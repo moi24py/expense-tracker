@@ -21,7 +21,7 @@ Would you like to:
        
 [Expense]
 A) add a new expense
-B) view expenses of this month
+B) view all the expenses
 C) view expenses in a category
 D) search for an expense
 E) delete an expense
