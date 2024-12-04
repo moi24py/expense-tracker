@@ -32,7 +32,7 @@ F) view balance
 G) add an amount
 H) subtract an amount
        - - -         
-0) Exit the program""")
+0) exit the program""")
 
     answer = input("\nEnter the corresponding letter/number: ")
     if answer.upper() in options:
@@ -497,10 +497,12 @@ def add_sub_money(sub:str=None, exp_cost:float=None):
                     rounded_amount = round(float(checked_amount.group()),2)
                     break
                 else:
-                    raise TypeError("Invalid input, only digits are allowed.")
+                    raise TypeError
             except:
                 print("Try again. Please only insert decimals up to two digits.")
                 i += 1
+            if i == 4:
+                raise TypeError("Invalid input, only digits are allowed.")
     total = 0
     try:
         current_balance = get_balance()
@@ -528,12 +530,12 @@ def add_sub_money(sub:str=None, exp_cost:float=None):
 
 def money_left_per_day():
     """Prints the mean amount that can be spent per day."""
-    tot = 0
+    curr_balance = 0
     remaining_days = 0
     expenses_t = 0
 
     try:
-        tot = get_balance()
+        curr_balance = get_balance()
     except:
         print("Cannot access to the current balance.")
         return None
@@ -550,8 +552,11 @@ def money_left_per_day():
         print("Cannot access the total amount of expenses of this month.")
         return None
     
-    remaining_amount = round(tot/remaining_days,2)
-    message = f"\U0001F4B8 You have spent {expenses_t}€ until today. You have roughly {remaining_amount}€ left this month."
+    if expenses_t >= curr_balance:
+        message = f"\U0001F4B8 You have spent {expenses_t}€ so far this month. You have no money left for the rest of the month."
+    else:
+        remaining_amount = round(curr_balance/remaining_days,2)
+        message = f"\U0001F4B8 You have spent {expenses_t}€ so far this month. You have roughly {remaining_amount}€ left this month."
     print(message)
 
 if __name__ == "__main__":
