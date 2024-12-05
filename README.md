@@ -34,19 +34,23 @@ expense-tracker % Python3 main.py
 
 ### How does it work
 A menu will allow the user to choose an option.
+
 <img width="247" alt="menu" src="https://github.com/user-attachments/assets/53055793-59d6-4a7f-91f6-1bc026bb8a3c">
 
 If this is the first time using the app, select option ```G``` to add funds to the balance (see option G).
 
 #### Add a new expense (option A)
 The user is asked to enter the name of the expense and the expense cost, select the category or make a new one if needed.
+
 <img width="518" alt="add_an_expense" src="https://github.com/user-attachments/assets/f4ff9e69-f1a3-4b1a-abd9-f30749792c78">
 
 #### View all the expenses (option B)
 The list of expenses added to the ```expense_list.csv``` file and the total amount are printed.
+
 <img width="315" alt="print_expenses" src="https://github.com/user-attachments/assets/754ea40d-ba9f-45e1-918f-d03fbe79a441">
 
 If there are no expenses, a message will be printed instead.
+
 <img width="295" alt="no_expenses" src="https://github.com/user-attachments/assets/7fca12d3-2e0c-4cd8-b1d1-a24bcc396fb4">
 
 #### View expenses in a category (option C)
